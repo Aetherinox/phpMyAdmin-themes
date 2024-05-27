@@ -1,0 +1,8 @@
+{
+    "name": "darkwolf",
+    "version": "5.3",
+    "description": "Dark theme for phpmyadmin",
+    "author": "SteppenWolf68",
+    "url": "https://github.com/SteppenWolf68",
+    "supports": ["5.0", "5.1", "5.2", "6.0"]
+}
