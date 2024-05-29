@@ -30,6 +30,53 @@ $textarea-rows: 15;
   border: none;
 }
 
+span {
+  &.cm-keyword,
+  &.cm-statement-verb {
+    color: #909;
+  }
+
+  &.cm-variable {
+    color: black;
+  }
+
+  &.cm-comment {
+    color: #808000;
+  }
+
+  &.cm-mysql-string {
+    color: #008000;
+  }
+
+  &.cm-operator {
+    color: fuchsia;
+  }
+
+  &.cm-mysql-word {
+    color: black;
+  }
+
+  &.cm-builtin {
+    color: #f00;
+  }
+
+  &.cm-variable-2 {
+    color: #f90;
+  }
+
+  &.cm-variable-3 {
+    color: #00f;
+  }
+
+  &.cm-separator {
+    color: fuchsia;
+  }
+
+  &.cm-number {
+    color: teal;
+  }
+}
+
 .autocomplete-column-name {
   display: inline-block;
 }
@@ -46,7 +93,7 @@ $textarea-rows: 15;
 }
 
 .CodeMirror-lint-tooltip {
-  z-index: 2000;
+  z-index: 200;
   font-family: inherit;
 
   code {

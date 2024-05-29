@@ -60,6 +60,26 @@ textarea.charField {
   width: 95%;
 }
 
+.pma-fieldset {
+  margin-top: 1em;
+  border: $main-color solid 1px;
+  padding: 0.5em;
+  background: $bg-one;
+
+  .pma-fieldset {
+    margin: 0.8em;
+  }
+
+  legend {
+    float: none;
+    font-weight: bold;
+    color: #444;
+    background-color: transparent;
+    width: initial;
+    font-size: 1em;
+  }
+}
+
 // buttons in some browsers (eg. Konqueror) are block elements, this breaks design
 button {
   display: inline;
@@ -77,23 +97,51 @@ button {
   clear: both;
 }
 
+.paddingtop {
+  padding-top: 1em;
+}
+
+div.tools {
+  border: 1px solid #000;
+  padding: 0.2em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+
+  /* avoid a thick line since this should be used under another fieldset */
+  border-top: 0;
+  text-align: right;
+  float: none;
+  clear: both;
+}
+
+.pma-fieldset.tblFooters {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+
+  /* avoid a thick line since this should be used under another fieldset */
+  border-top: 0;
+  text-align: right;
+  float: none;
+  clear: both;
+}
+
 div.null_div {
   height: 20px;
   text-align: center;
   font-style: normal;
   min-width: 50px;
+}
 
-  label {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+.pma-fieldset {
+  .formelement {
+    float: left;
+    margin-right: 0.5em;
+    white-space: nowrap;
+  }
 
-    input {
-      cursor: pointer;
-    }
+  // revert for Gecko
+  div[class="formelement"] {
+    white-space: normal;
   }
 }
 
@@ -173,6 +221,11 @@ img.lightbulb {
   background-position: center;
 }
 
+.selectallarrow {
+  margin-right: 0.3em;
+  margin-left: 0.6em;
+}
+
 .with-selected {
   margin-left: 2em;
 }
@@ -183,6 +236,24 @@ img.lightbulb {
 #pma_footer {
   position: relative;
   padding: 0 0.5em;
+}
+
+.confirmation {
+  background-color: #ffc;
+}
+
+.pma-fieldset.confirmation {
+  border: 0.1em solid #f00;
+
+  legend {
+    border-left: 0.1em solid #f00;
+    border-right: 0.1em solid #f00;
+    font-weight: bold;
+    background-image: url("../img/s_really.png");
+    background-repeat: no-repeat;
+    background-position: 5px 50% #{"/* rtl:97% 50% */"};
+    padding: 0.2em 0.2em 0.2em 25px;
+  }
 }
 
 .error {
@@ -199,6 +270,61 @@ label.error {
 
 .new_central_col {
   width: 100%;
+}
+
+.tblcomment {
+  font-size: 70%;
+  font-weight: normal;
+  color: #009;
+}
+
+.tblHeaders {
+  font-weight: bold;
+  color: $th-color;
+  background: $th-background;
+}
+
+div.tools,
+.tblFooters {
+  font-weight: normal;
+  color: $th-color;
+  background: $th-background;
+}
+
+.tblHeaders a {
+  &:link,
+  &:active,
+  &:visited {
+    color: #00f;
+  }
+
+  &:hover {
+    color: #f00;
+  }
+}
+
+div.tools a {
+  &:link,
+  &:visited,
+  &:active {
+    color: #00f;
+  }
+
+  &:hover {
+    color: #f00;
+  }
+}
+
+.tblFooters a {
+  &:link,
+  &:active,
+  &:visited {
+    color: #00f;
+  }
+
+  &:hover {
+    color: #f00;
+  }
 }
 
 /* disabled text */
@@ -282,6 +408,10 @@ div.container.modal_form {
   text-align: left;
 }
 
+#login_form .pma-fieldset.tblFooters {
+  text-align: right;
+}
+
 #login_form select#select_server {
   width: 100%;
 }
@@ -327,6 +457,10 @@ div#modalOverlay {
 
 .color_gray {
   color: gray;
+}
+
+.max_height_400 {
+  max-height: 400px;
 }
 
 li.last.database {
@@ -383,6 +517,7 @@ div#tablestatistics table {
   top: 0;
   right: 0;
   z-index: 99;
+  padding: $breadcrumb-navbar-padding-y $breadcrumb-padding-x;
 }
 
 #page_settings_icon {
@@ -475,6 +610,11 @@ div#tablestatistics table {
   }
 }
 
+#fieldset_user_global_rights .pma-fieldset,
+#fieldset_user_group_rights .pma-fieldset {
+  float: left;
+}
+
 #fieldset_user_global_rights > legend input {
   margin-left: 2em;
 }
@@ -483,6 +623,11 @@ div#tablestatistics table {
   text-decoration: underline;
   color: #235a81;
   cursor: pointer;
+}
+
+h3#serverstatusqueries span {
+  font-size: 60%;
+  display: inline;
 }
 
 div#serverStatusTabs {
@@ -494,8 +639,18 @@ caption a.top {
 }
 
 div {
+  &#serverstatusquerieschart {
+    float: left;
+    width: 500px;
+    height: 350px;
+    margin-right: 50px;
+  }
+}
+
+div {
   &#serverstatus table {
-    tbody td.descr a {
+    tbody td.descr a,
+    .tblFooters a {
       white-space: nowrap;
     }
   }
@@ -542,6 +697,17 @@ div.tabLinks {
   }
 }
 
+.popupContent {
+  display: none;
+  position: absolute;
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 3px;
+  box-shadow: 2px 2px 3px #666;
+  background-color: white;
+  z-index: 2;
+}
+
 div#logTable {
   padding-top: 10px;
   clear: both;
@@ -553,6 +719,19 @@ div#logTable {
 
 .smallIndent {
   padding-left: 7px;
+}
+
+/* profiling */
+div#profilingchart {
+  width: 850px;
+  height: 370px;
+  float: left;
+}
+
+#profilingchart .jqplot-highlighter-tooltip {
+  top: auto !important;
+  left: 11px;
+  bottom: 24px;
 }
 
 textarea {
@@ -633,10 +812,40 @@ textarea {
   text-align: right;
 }
 
+#qbe_div_table_list,
+#qbe_div_sql_query {
+  float: left;
+}
+
 kbd {
   color: $main-color;
   background-color: transparent;
   box-shadow: none;
+}
+
+code {
+  font-size: 1em;
+  color: $main-color;
+
+  &.php {
+    display: block;
+    padding-left: 0.3em;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-height: 10em;
+    overflow: auto;
+    direction: ltr;
+  }
+
+  &.sql {
+    display: block;
+    padding: 0.3em;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-height: 10em;
+    overflow: auto;
+    direction: ltr;
+  }
 }
 
 div.sqlvalidate {
@@ -646,6 +855,7 @@ div.sqlvalidate {
   margin-bottom: 0;
   max-height: 10em;
   overflow: auto;
+  direction: ltr;
 }
 
 .result_query div.sqlOuter,
@@ -654,6 +864,10 @@ div.sqlvalidate {
   border-top: 0;
   border-bottom: 0;
   background: $bg-one;
+}
+
+.result_query div.sqlOuter {
+  text-align: left;
 }
 
 #PMA_slidingMessage code.sql {
@@ -789,7 +1003,6 @@ select.invalid_value,
   top: 0;
   left: 0;
   background: #000;
-  opacity: 0.7;
   z-index: 1000;
   overflow: hidden;
 }
@@ -1102,6 +1315,20 @@ input#auto_increment_opt {
   width: min-content;
 }
 
+#placeholder {
+  .button {
+    position: absolute;
+    cursor: pointer;
+  }
+
+  div.button {
+    font-size: smaller;
+    color: #999;
+    background-color: #eee;
+    padding: 2px;
+  }
+}
+
 .wrapper {
   float: left;
   margin-bottom: 0.5em;
@@ -1144,6 +1371,22 @@ input#auto_increment_opt {
   }
 }
 
+.doubleFieldset {
+  .pma-fieldset {
+    width: 48%;
+    float: left;
+    padding: 0;
+  }
+
+  legend {
+    margin-left: 0.5em;
+  }
+
+  div.wrap {
+    padding: 0.5em;
+  }
+}
+
 #table_name_col_no_outer {
   margin-top: 45px;
 }
@@ -1175,69 +1418,61 @@ input#auto_increment_opt {
   }
 }
 
+#placeholder {
+  position: relative;
+  border: 1px solid #aaa;
+  float: right;
+  overflow: hidden;
+  width: 450px;
+  height: 300px;
+}
+
+#openlayersmap {
+  width: 450px;
+  height: 300px;
+}
+
 .placeholderDrag {
   cursor: move;
 }
 
-#visualization-placeholder {
-  position: relative;
-  border: 1px solid #aaa;
-  overflow: hidden;
-  box-sizing: content-box;
-
-  .visualization-target {
-    height: 100%;
-  }
-
-  .visualization-target-svg {
-    .button {
-      position: absolute;
-      cursor: pointer;
-    }
-
-    .left_arrow {
-      left: 8px;
-      top: 26px;
-    }
-
-    .right_arrow {
-      left: 26px;
-      top: 26px;
-    }
-
-    .up_arrow {
-      left: 17px;
-      top: 8px;
-    }
-
-    .down_arrow {
-      left: 17px;
-      top: 44px;
-    }
-
-    .zoom_in {
-      left: 17px;
-      top: 67px;
-    }
-
-    .zoom_world {
-      left: 17px;
-      top: 85px;
-    }
-
-    .zoom_out {
-      left: 17px;
-      top: 103px;
-    }
-  }
+#placeholder .button {
+  position: absolute;
 }
 
-#tooltip {
-  position: absolute;
-  border: 1px solid #fdd;
-  padding: 2px;
-  background-color: #fee;
-  opacity: 0.9;
+#left_arrow {
+  left: 8px;
+  top: 26px;
+}
+
+#right_arrow {
+  left: 26px;
+  top: 26px;
+}
+
+#up_arrow {
+  left: 17px;
+  top: 8px;
+}
+
+#down_arrow {
+  left: 17px;
+  top: 44px;
+}
+
+#zoom_in {
+  left: 17px;
+  top: 67px;
+}
+
+#zoom_world {
+  left: 17px;
+  top: 85px;
+}
+
+#zoom_out {
+  left: 17px;
+  top: 103px;
 }
 
 .colborder {
@@ -1579,6 +1814,10 @@ body #ui-datepicker-div {
   z-index: 9999 !important;
 }
 
+.ui-dialog .pma-fieldset legend a {
+  color: #00f;
+}
+
 .ui-draggable {
   z-index: 801;
 }
@@ -1608,6 +1847,14 @@ div#page_content div {
   }
 }
 
+table.show_create {
+  margin-top: 1em;
+
+  td {
+    border-right: 1px solid #bbb;
+  }
+}
+
 #alias_modal {
   table {
     width: 100%;
@@ -1633,7 +1880,6 @@ div#page_content div {
   bottom: 0;
   left: 0;
   z-index: 100;
-  pointer-events: none;
 }
 
 textarea {
@@ -1658,7 +1904,6 @@ textarea {
     background: #ccc;
     border-top: solid 1px #aaa;
     cursor: n-resize;
-    pointer-events: auto;
 
     span {
       vertical-align: middle;
@@ -1735,7 +1980,6 @@ textarea {
     border-top: solid 1px #aaa;
     background: #fff;
     padding-top: 0.4em;
-    pointer-events: auto;
 
     &.console_dark_theme {
       background: #000;
@@ -2339,6 +2583,31 @@ body {
   }
 }
 
+/* templates/database/multi_table_query */
+
+.multi_table_query_form {
+  .query-form__tr--hide {
+    display: none;
+  }
+
+  .query-form__fieldset--inline,
+  .query-form__select--inline {
+    display: inline;
+  }
+
+  .query-form__tr--bg-none {
+    background: none;
+  }
+
+  .query-form__input--wide {
+    width: 91%;
+  }
+
+  .query-form__multi-sql-query {
+    float: left;
+  }
+}
+
 /* templates/database/designer */
 
 /* side menu */
@@ -2346,7 +2615,7 @@ body {
   overflow: hidden;
 }
 
-@media only screen and (width <= 768px) {
+@media only screen and (max-width: 768px) {
   .responsivetable {
     overflow-x: auto;
   }
@@ -2381,6 +2650,15 @@ body {
     .tablesorter {
       min-width: 100%;
     }
+  }
+
+  .doubleFieldset .pma-fieldset {
+    width: 98%;
+  }
+
+  div#serverstatusquerieschart {
+    width: 100%;
+    height: 450px;
   }
 
   .ui-dialog {
@@ -2437,6 +2715,18 @@ body {
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll;
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-up(xl) {
+  div.tools {
+    text-align: left;
+  }
+
+  .pma-fieldset.tblFooters,
+  .tblFooters {
+    text-align: left;
+  }
 }
 
 .resize-vertical {

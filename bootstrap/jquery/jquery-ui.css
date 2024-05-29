@@ -898,24 +898,24 @@ body .ui-tooltip {
 	font-size: 1em;
 }
 .ui-widget.ui-widget-content {
-	border: 1px solid var(--bs-border-color);
+	border: 1px solid #d3d3d3;
 }
 .ui-widget-content {
-	border: 1px solid var(--bs-border-color);
-	background: var(--bs-body-bg);
-	color: var(--bs-body-color);
+	border: 1px solid #aaaaaa;
+	background: #ffffff;
+	color: #222222;
 }
 .ui-widget-content a {
-	color: var(--bs-link-color);
+	color: #222222;
 }
 .ui-widget-header {
-	border: 1px solid var(--bs-border-color);
-	background: var(--bs-secondary-bg);
-	color: var(--bs-secondary-color);
+	border: 1px solid #aaaaaa;
+	background: #cccccc url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;
+	color: #222222;
 	font-weight: bold;
 }
 .ui-widget-header a {
-	color: var(--bs-link-color);
+	color: #222222;
 }
 
 /* Interaction states

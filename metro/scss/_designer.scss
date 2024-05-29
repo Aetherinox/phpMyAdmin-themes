@@ -257,7 +257,9 @@ canvas.designer {
 }
 
 a {
+  &.M_butt_Selected_down_IE,
   &.M_butt_Selected_down,
+  &.M_butt_Selected_down_IE:hover,
   &.M_butt_Selected_down:hover,
   &.M_butt:hover {
     background-color: #eee;
@@ -378,6 +380,11 @@ a {
   .ui-accordion-content {
     padding: 0;
   }
+}
+
+#foreignkeychk {
+  text-align: left;
+  cursor: pointer;
 }
 
 .side-menu {

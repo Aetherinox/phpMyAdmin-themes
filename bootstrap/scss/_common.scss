@@ -6,6 +6,27 @@
   margin: 0 0 12px;
 }
 
+button.mult_submit,
+.checkall_box + label {
+  text-decoration: none;
+  color: #235a81;
+  cursor: pointer;
+  outline: none;
+}
+
+button.mult_submit {
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    color: #235a81;
+  }
+}
+
+.checkall_box + label:hover {
+  text-decoration: underline;
+  color: #235a81;
+}
+
 #navbarDropdown > img {
   display: none;
 }
@@ -20,6 +41,38 @@ textarea {
   }
 }
 
+.pma-fieldset {
+  margin-top: 1em;
+  border-radius: 4px 4px 0 0;
+  border: #aaa solid 1px;
+  padding: 0.5em;
+  background: #eee;
+  text-shadow: 1px 1px 2px $white;
+  box-shadow: 1px 1px 2px $white inset;
+}
+
+.pma-fieldset {
+  .pma-fieldset {
+    margin: 0.8em;
+    border: 1px solid #aaa;
+    background: #e8e8e8;
+  }
+
+  legend {
+    float: none;
+    font-weight: bold;
+    color: #444;
+    padding: 5px 10px;
+    border-radius: 2px;
+    border: 1px solid #aaa;
+    background-color: $white;
+    max-width: 100%;
+    box-shadow: 3px 3px 15px #bbb;
+    width: initial;
+    font-size: 1em;
+  }
+}
+
 // 3.4
 .datatable {
   table-layout: fixed;
@@ -30,9 +83,41 @@ textarea {
   clear: both;
 }
 
+.paddingtop {
+  padding-top: 1em;
+}
+
 .separator {
   color: $white;
   text-shadow: 0 1px 0 $black;
+}
+
+div.tools {
+  padding: 0.2em;
+
+  a {
+    color: #3a7ead !important;
+  }
+
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  // avoid a thick line since this should be used under another fieldset
+  border-top: 0;
+  text-align: right;
+  float: none;
+  clear: both;
+  border-radius: 0 0 4px 4px;
+}
+
+.pma-fieldset.tblFooters {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  // avoid a thick line since this should be used under another fieldset
+  border-top: 0;
+  text-align: right;
+  float: none;
+  clear: both;
+  border-radius: 0 0 4px 4px;
 }
 
 div.null_div {
@@ -40,18 +125,19 @@ div.null_div {
   text-align: center;
   font-style: normal;
   min-width: 50px;
+}
 
-  label {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+.pma-fieldset {
+  .formelement {
+    float: left;
+    margin-right: 0.5em;
+    // IE
+    white-space: nowrap;
+  }
 
-    input {
-      cursor: pointer;
-    }
+  // revert for Gecko
+  div[class=formelement] {
+    white-space: normal;
   }
 }
 
@@ -149,6 +235,11 @@ td .icon {
   margin: 0;
 }
 
+.selectallarrow {
+  margin-right: 0.3em;
+  margin-left: 0.6em;
+}
+
 .with-selected {
   margin-left: 2em;
 }
@@ -161,10 +252,64 @@ td .icon {
   padding: 0 0.5em;
 }
 
+.confirmation {
+  color: $black;
+  background-color: pink;
+}
+
 // end messageboxes
 
 .new_central_col {
   width: 100%;
+}
+
+.tblcomment {
+  font-size: 70%;
+  font-weight: normal;
+  color: #009;
+}
+
+.tblHeaders {
+  font-weight: bold;
+  color: $black;
+  background: #d3dce3;
+}
+
+div.tools,
+.tblFooters {
+  font-weight: normal;
+  color: $black;
+  background: #d3dce3;
+}
+
+.tblHeaders a {
+  &:link,
+  &:active,
+  &:visited {
+    color: #00f;
+  }
+}
+
+div.tools a {
+  &:link,
+  &:visited,
+  &:active {
+    color: #00f;
+  }
+}
+
+.tblFooters a {
+  &:link,
+  &:active,
+  &:visited {
+    color: #00f;
+  }
+}
+
+.tblHeaders a:hover,
+div.tools a:hover,
+.tblFooters a:hover {
+  color: #f00;
 }
 
 .error {
@@ -231,7 +376,7 @@ div.container.modal_form {
   margin: 0 auto;
   width: 30em;
   text-align: center;
-  background: var(--#{$prefix}body-bg);
+  background: $white;
   z-index: 999;
 }
 
@@ -241,7 +386,7 @@ div#modalOverlay {
   left: 0;
   height: 100%;
   width: 100%;
-  background: var(--#{$prefix}body-bg);
+  background: $white;
   z-index: 900;
 }
 
@@ -276,6 +421,10 @@ label.col-3.d-flex.align-items-center {
 
 .color_gray {
   color: gray;
+}
+
+.max_height_400 {
+  max-height: 400px;
 }
 
 li.last.database {
@@ -319,18 +468,6 @@ div#tablestatistics table {
 #topmenucontainer {
   padding-right: 1em;
   width: 100%;
-
-  .navbar {
-    background-color: #f8f8f8;
-  }
-}
-
-@include color-mode(dark) {
-  #topmenucontainer {
-    .navbar {
-      background-color: #262a2e;
-    }
-  }
 }
 
 #page_nav_icons {
@@ -338,6 +475,7 @@ div#tablestatistics table {
   top: 0;
   right: 0;
   z-index: 99;
+  padding: $breadcrumb-navbar-padding-y $breadcrumb-padding-x;
 }
 
 #page_settings_icon {
@@ -434,6 +572,11 @@ div#tablestatistics table {
   }
 }
 
+#fieldset_user_global_rights .pma-fieldset,
+#fieldset_user_group_rights .pma-fieldset {
+  float: left;
+}
+
 #fieldset_user_global_rights > legend input {
   margin-left: 2em;
 }
@@ -447,6 +590,11 @@ div#tablestatistics table {
   cursor: pointer;
 }
 
+h3#serverstatusqueries span {
+  font-size: 60%;
+  display: inline;
+}
+
 div#serverStatusTabs {
   margin-top: 1em;
 }
@@ -455,9 +603,17 @@ caption a.top {
   float: right;
 }
 
+div#serverstatusquerieschart {
+  float: left;
+  width: 500px;
+  height: 350px;
+  margin-right: 50px;
+}
+
 div {
   &#serverstatus table {
-    tbody td.descr a {
+    tbody td.descr a,
+    .tblFooters a {
       white-space: nowrap;
     }
   }
@@ -503,6 +659,17 @@ div.tabLinks {
   }
 }
 
+.popupContent {
+  display: none;
+  position: absolute;
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 3px;
+  background-color: $white;
+  z-index: 2;
+  box-shadow: 2px 2px 3px #666;
+}
+
 div {
   &#logTable {
     padding-top: 10px;
@@ -543,6 +710,22 @@ div {
 }
 
 // end serverstatus
+
+// profiling
+
+div#profilingchart {
+  width: 850px;
+  height: 370px;
+  float: left;
+}
+
+#profilingchart .jqplot-highlighter-tooltip {
+  top: auto !important;
+  left: 11px;
+  bottom: 24px;
+}
+
+// end profiling
 
 // table charting
 #resizer {
@@ -614,12 +797,6 @@ textarea {
   background: $white;
 }
 
-@include color-mode(dark) {
-  #full_name_layer {
-    background: $black;
-  }
-}
-
 #body_browse_foreigners {
   background: #f3f3f3;
   margin: 0.5em 0.5em 0 0.5em;
@@ -650,6 +827,35 @@ textarea {
   border-top: 0.1em solid silver;
 }
 
+#qbe_div_table_list,
+#qbe_div_sql_query {
+  float: left;
+}
+
+code {
+  font-size: 1em;
+
+  &.php {
+    display: block;
+    padding-left: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-height: 10em;
+    overflow: auto;
+    direction: ltr;
+  }
+
+  &.sql {
+    display: block;
+    padding: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-height: 10em;
+    overflow: auto;
+    direction: ltr;
+  }
+}
+
 div.sqlvalidate {
   display: block;
   padding: 1em;
@@ -657,6 +863,14 @@ div.sqlvalidate {
   margin-bottom: 0;
   max-height: 10em;
   overflow: auto;
+  direction: ltr;
+}
+
+.result_query {
+  div.sqlOuter {
+    background: #e5e5e5;
+    text-align: left;
+  }
 }
 
 #PMA_slidingMessage code.sql,
@@ -793,7 +1007,6 @@ select.invalid_value,
   top: 0;
   left: 0;
   background: $black;
-  opacity: 0.7;
   z-index: 1000;
   overflow: hidden;
 }
@@ -873,9 +1086,9 @@ table#index_columns {
   }
 
   li {
-    background-color: var(--bs-secondary-bg);
-    border: 1px solid var(--bs-border-color);
-    color: var(--bs-secondary-color);
+    background: #d3dce3;
+    border: 1px solid #aaa;
+    color: $black;
     font-weight: bold;
     margin: 0.4em;
     padding: 0.2em;
@@ -985,6 +1198,31 @@ table#index_columns {
     border-color: #a11 !important;
   }
 
+  input {
+    &[type=text],
+    &[type=password],
+    &[type=number] {
+      border: 1px #a7a6aa solid;
+      height: auto;
+
+      &:focus {
+        border: 1px #6676ff solid;
+        background: #f7fbff;
+      }
+    }
+  }
+
+  select,
+  textarea {
+    border: 1px #a7a6aa solid;
+    height: auto;
+
+    &:focus {
+      border: 1px #6676ff solid;
+      background: #f7fbff;
+    }
+  }
+
   .field-comment-mark {
     font-family: serif;
     color: #007;
@@ -1005,17 +1243,6 @@ table#index_columns {
     &::before {
       content: "\25B8  ";
     }
-  }
-}
-
-@include color-mode(dark) {
-  .config-form fieldset th small,
-  .config-form fieldset th .small {
-    color: inherit;
-  }
-
-  .config-form .custom {
-    background: #555;
   }
 }
 
@@ -1062,12 +1289,6 @@ fieldset {
   }
 }
 
-@include color-mode(dark) {
-  fieldset .group-header th {
-    background: #333;
-  }
-}
-
 .click-hide-message {
   cursor: pointer;
 }
@@ -1083,6 +1304,27 @@ fieldset {
 
 input#auto_increment_opt {
   width: min-content;
+}
+
+#placeholder {
+  position: relative;
+  border: 1px solid #aaa;
+  float: right;
+  overflow: hidden;
+  width: 450px;
+  height: 300px;
+
+  .button {
+    position: absolute;
+    cursor: pointer;
+  }
+
+  div.button {
+    font-size: smaller;
+    color: #999;
+    background-color: #eee;
+    padding: 2px;
+  }
 }
 
 .wrapper {
@@ -1129,6 +1371,22 @@ input#auto_increment_opt {
   }
 }
 
+.doubleFieldset {
+  .pma-fieldset {
+    width: 48%;
+    float: left;
+    padding: 0;
+  }
+
+  legend {
+    margin-left: 1.5em;
+  }
+
+  div.wrap {
+    padding: 1.5em;
+  }
+}
+
 #table_name_col_no_outer {
   margin-top: 45px;
 }
@@ -1137,6 +1395,7 @@ input#auto_increment_opt {
   position: fixed;
   top: 100px !important;
   width: 100%;
+  background: $white;
 }
 
 #table_columns {
@@ -1158,69 +1417,48 @@ input#auto_increment_opt {
   }
 }
 
+#openlayersmap {
+  width: 450px;
+  height: 300px;
+}
+
 .placeholderDrag {
   cursor: move;
 }
 
-#visualization-placeholder {
-  position: relative;
-  border: 1px solid #aaa;
-  overflow: hidden;
-  box-sizing: content-box;
-
-  .visualization-target {
-    height: 100%;
-  }
-
-  .visualization-target-svg {
-    .button {
-      position: absolute;
-      cursor: pointer;
-    }
-
-    .left_arrow {
-      left: 8px;
-      top: 26px;
-    }
-
-    .right_arrow {
-      left: 26px;
-      top: 26px;
-    }
-
-    .up_arrow {
-      left: 17px;
-      top: 8px;
-    }
-
-    .down_arrow {
-      left: 17px;
-      top: 44px;
-    }
-
-    .zoom_in {
-      left: 17px;
-      top: 67px;
-    }
-
-    .zoom_world {
-      left: 17px;
-      top: 85px;
-    }
-
-    .zoom_out {
-      left: 17px;
-      top: 103px;
-    }
-  }
+#left_arrow {
+  left: 8px;
+  top: 26px;
 }
 
-#tooltip {
-  position: absolute;
-  border: 1px solid #fdd;
-  padding: 2px;
-  background-color: #fee;
-  opacity: 0.9;
+#right_arrow {
+  left: 26px;
+  top: 26px;
+}
+
+#up_arrow {
+  left: 17px;
+  top: 8px;
+}
+
+#down_arrow {
+  left: 17px;
+  top: 44px;
+}
+
+#zoom_in {
+  left: 17px;
+  top: 67px;
+}
+
+#zoom_world {
+  left: 17px;
+  top: 85px;
+}
+
+#zoom_out {
+  left: 17px;
+  top: 103px;
 }
 
 .colborder {
@@ -1384,7 +1622,7 @@ input#auto_increment_opt {
 .navigation {
   margin: 0.8em 0;
   border-radius: 5px;
-  background: var(--#{$prefix}secondary-bg);
+  background: linear-gradient(#eee, #ccc);
 
   td {
     margin: 0;
@@ -1560,6 +1798,10 @@ body .ui-widget {
   font-size: 1em;
 }
 
+.ui-dialog .pma-fieldset legend a {
+  color: #235a81;
+}
+
 .ui-draggable {
   z-index: 801;
 }
@@ -1589,6 +1831,14 @@ div#page_content div {
   }
 }
 
+table.show_create {
+  margin-top: 1em;
+
+  td {
+    border-right: 1px solid #bbb;
+  }
+}
+
 #alias_modal {
   table {
     width: 100%;
@@ -1614,7 +1864,6 @@ div#page_content div {
   bottom: 0;
   left: 0;
   z-index: 100;
-  pointer-events: none;
 }
 
 #pma_console {
@@ -1631,10 +1880,9 @@ div#page_content div {
 
   .toolbar {
     position: relative;
-    background: var(--#{$prefix}gray-200);
+    background: #ccc;
     border-top: solid 1px #aaa;
     cursor: n-resize;
-    pointer-events: auto;
 
     span {
       vertical-align: middle;
@@ -1685,12 +1933,12 @@ div#page_content div {
   .message span.action:hover,
   .toolbar .button:hover,
   .switch_button:hover {
-    background: var(--#{$prefix}gray-400);
+    background: #ddd;
   }
 
   .toolbar {
     .button.active {
-      background: var(--#{$prefix}gray-400);
+      background: #ddd;
     }
 
     .text {
@@ -1713,9 +1961,8 @@ div#page_content div {
     overflow-y: auto;
     margin-bottom: -65px;
     border-top: solid 1px #aaa;
-    background: var(--#{$prefix}body-bg);
+    background: $white;
     padding-top: 0.4em;
-    pointer-events: auto;
 
     &.console_dark_theme {
       background: $black;
@@ -1872,7 +2119,7 @@ div#page_content div {
     .action_content {
       position: absolute;
       bottom: 100%;
-      background: var(--#{$prefix}gray-200);
+      background: #ccc;
       border: solid 1px #aaa;
       border-top-left-radius: 3px;
     }
@@ -1893,7 +2140,7 @@ div#page_content div {
     }
 
     .text {
-      background: var(--#{$prefix}white);
+      background: $white;
     }
 
     &.collapsed {
@@ -1959,36 +2206,6 @@ div#page_content div {
   .button.hide,
   .message span.text.hide {
     display: none;
-  }
-}
-
-@include color-mode(dark) {
-  #pma_console {
-    .toolbar {
-      background-color: var(--#{$prefix}gray-800);
-
-      .button.active {
-        background: var(--#{$prefix}gray-600);
-        color: var(--#{$prefix}white);
-      }
-    }
-
-    .message span.action:hover,
-    .toolbar .button:hover,
-    .switch_button:hover {
-      background: var(--#{$prefix}gray-600);
-      color: var(--#{$prefix}white);
-    }
-
-    .message {
-      .action_content {
-        background: var(--#{$prefix}gray-800);
-      }
-
-      .text {
-        background: var(--#{$prefix}black);
-      }
-    }
   }
 }
 
@@ -2351,6 +2568,31 @@ body .ui-dialog {
 }
 // end of styles for jQuery-ui to support rtl languages
 
+/* templates/database/multi_table_query */
+
+.multi_table_query_form {
+  .query-form__tr--hide {
+    display: none;
+  }
+
+  .query-form__fieldset--inline,
+  .query-form__select--inline {
+    display: inline;
+  }
+
+  .query-form__tr--bg-none {
+    background: none;
+  }
+
+  .query-form__input--wide {
+    width: 91%;
+  }
+
+  .query-form__multi-sql-query {
+    float: left;
+  }
+}
+
 // templates/database/designer
 // side menu
 #name-panel {
@@ -2363,7 +2605,7 @@ body .ui-dialog {
   overflow-y: scroll;
 }
 
-@media only screen and (width <= 768px) {
+@media only screen and (max-width: 768px) {
   .responsivetable {
     overflow-x: auto;
   }
@@ -2398,6 +2640,15 @@ body .ui-dialog {
     .tablesorter {
       min-width: 100%;
     }
+  }
+
+  .doubleFieldset .pma-fieldset {
+    width: 98%;
+  }
+
+  div#serverstatusquerieschart {
+    width: 100%;
+    height: 450px;
   }
 
   .ui-dialog {
@@ -2448,6 +2699,18 @@ body .ui-dialog {
 
 .ui_tpicker_time_input {
   width: 100%;
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-up(xl) {
+  div.tools {
+    text-align: left;
+  }
+
+  .pma-fieldset.tblFooters,
+  .tblFooters {
+    text-align: left;
+  }
 }
 
 .resize-vertical {

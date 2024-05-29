@@ -108,8 +108,7 @@ $btn-line-height: 1.15;
 
 // Dropdowns
 
-$dropdown-padding-y: 0.5rem;
-$dropdown-padding-x: 0.5rem;
+$dropdown-padding-y: 0;
 $dropdown-item-padding-y: 0;
 $dropdown-item-padding-x: 0;
 
@@ -148,7 +147,6 @@ $pagination-disabled-border-color: #aaa;
 $card-border-color: #aaa;
 $card-bg: #eee;
 $card-cap-bg: #fff;
-$card-img-height: 16vh;
 
 // Accordion
 
@@ -159,11 +157,10 @@ $accordion-button-active-bg: $navi-background;
 
 // Breadcrumbs
 
-$breadcrumb-navbar-padding-y: 0.5rem;
+$breadcrumb-navbar-padding-y: 0.1rem;
 $breadcrumb-navbar-padding-x: 2.2em;
 $breadcrumb-navbar-margin-bottom: 0;
 $breadcrumb-navbar-bg: #888;
-$breadcrumb-navbar-bg-dark: #888;
 $breadcrumb-divider-color: #fff;
 $breadcrumb-divider: quote("»");
 

@@ -6,7 +6,7 @@
 
 font[color="red"],
 span[style="color: #FF0000"] {
-  color: var(--browse-warning-color) !important;
+  color: $browse-warning-color !important;
 }
 
 strong {
@@ -25,7 +25,7 @@ body#loginform {
   }
 
   #page_content {
-    background-color: var(--navi-background);
+    background-color: $navi-background;
     margin: 0 !important;
     padding: 20px;
     margin-top: 10% !important;
@@ -67,7 +67,8 @@ body#loginform {
     line-height: 2;
   }
 
-  a.logo {
+  a.logo,
+  .pma-fieldset legend {
     display: none;
   }
 
@@ -79,7 +80,7 @@ body#loginform {
     &.textfield {
       width: 100%;
       border: 1px solid #fff;
-      background: var(--navi-color);
+      background: $navi-color;
       color: $th-color;
       box-sizing: border-box;
       margin: 0;
@@ -112,7 +113,7 @@ body#loginform {
     min-width: 100%;
 
     &:hover {
-      border: 1px solid var(--navi-color);
+      border: 1px solid $navi-color;
     }
   }
 
@@ -136,9 +137,10 @@ body#loginform {
   }
 
   .card,
-  .card-footer {
+  .card-footer,
+  .pma-fieldset {
     border: none;
-    color: var(--navi-color);
+    color: $navi-color;
     padding: 0;
     margin-top: 0;
     margin-bottom: 10px;
@@ -147,6 +149,12 @@ body#loginform {
     &:first-child {
       border-bottom: none;
       margin: 0;
+    }
+
+    &.tblFooters {
+      border: none;
+      margin: 0;
+      clear: none;
     }
   }
 }
@@ -234,15 +242,15 @@ input {
   &[type="text"],
   &[type="password"],
   &[type="number"] {
-    border: 1px solid $secondary;
+    border: 1px solid $browse-gray-color;
     color: $th-color;
     padding: 5px;
     font-family: $font-family-base;
     background-color: $body-bg;
 
     &:focus {
-      border: 1px solid var(--navi-hover-background);
-      color: $body-color;
+      border: 1px solid $navi-hover-background;
+      color: $main-color;
     }
   }
 
@@ -264,10 +272,10 @@ button:not(.accordion-button) {
   padding: 4px;
   color: $button-color;
   text-decoration: none;
-  background-color: var(--button-background);
+  background-color: $button-background;
 
   &:hover {
-    background-color: var(--button-hover);
+    background-color: $button-hover;
     color: white;
     text-decoration: none;
   }
@@ -301,9 +309,23 @@ button.jsPrintButton {
 
 textarea {
   overflow: visible;
-  border: 1px solid $secondary;
+  border: 1px solid $browse-gray-color;
   color: $th-color;
   background-color: $body-bg;
+}
+
+.pma-fieldset {
+  margin-top: 20px;
+  border: 1px solid $border-color;
+  padding: 20px;
+  background-color: $th-background;
+
+  .pma-fieldset {
+    margin: 20px;
+    margin-bottom: 0;
+    background-color: $body-bg;
+    border: none;
+  }
 }
 
 legend {
@@ -325,7 +347,7 @@ button {
 }
 
 select {
-  border: 1px solid $secondary;
+  border: 1px solid $browse-gray-color;
   color: $th-color;
   padding: 4px;
   font-family: $font-family-base;
@@ -337,14 +359,18 @@ select {
   }
 
   &:focus {
-    border: 1px solid var(--navi-hover-background);
-    color: $body-color;
+    border: 1px solid $navi-hover-background;
+    color: $main-color;
   }
 }
 
 /* classes */
 .clearfloat {
   clear: both;
+}
+
+.paddingtop {
+  padding-top: 1em;
 }
 
 .separator {
@@ -356,36 +382,57 @@ select {
   margin-bottom: 20px;
 }
 
+div.tools {
+  padding: 10px;
+  text-align: right;
+
+  span {
+    float: right;
+    margin: 6px 2px;
+  }
+
+  a {
+    color: $blue-header !important;
+  }
+}
+
+.pma-fieldset.tblFooters {
+  margin-top: -1px;
+  border-top: 0;
+  text-align: right;
+  float: none;
+  clear: both;
+}
+
 div.null_div {
   height: 20px;
   text-align: center;
   font-style: normal;
   min-width: 50px;
+}
 
-  label {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+.pma-fieldset {
+  .formelement {
+    float: left;
+    margin-right: 0.5em;
+  }
 
-    input {
-      cursor: pointer;
-    }
+  /* revert for Gecko */
+  div[class="formelement"] {
+    white-space: normal;
   }
 }
 
 button.mult_submit {
   border: none;
   background-color: transparent;
-  color: var(--bs-link-color);
+  color: $browse-pointer-color;
   margin: 0;
 }
 
 .structure_actions_dropdown {
   background-color: $browse-marker-background;
-  color: $body-color;
+  color: $main-color;
 
   .icon {
     vertical-align: middle !important;
@@ -395,17 +442,17 @@ button.mult_submit {
 /* marks table rows/cells if the db field is in a where condition */
 
 .condition {
-  border-color: var(--browse-warning-color) !important;
+  border-color: $browse-warning-color !important;
 }
 
 th.condition {
-  border: 1px solid var(--browse-warning-color);
-  background: var(--browse-warning-color);
+  border: 1px solid $browse-warning-color;
+  background: $browse-warning-color;
   color: $body-bg !important;
 
   a {
-    border: 1px solid var(--browse-warning-color);
-    background: var(--browse-warning-color);
+    border: 1px solid $browse-warning-color;
+    background: $browse-warning-color;
     color: $body-bg !important;
   }
 }
@@ -468,6 +515,11 @@ img.lightbulb {
   color: inherit !important;
 }
 
+.selectallarrow {
+  margin-right: 0.3em;
+  margin-left: 0.6em;
+}
+
 .with-selected {
   margin-left: 2em;
 }
@@ -484,11 +536,20 @@ img.lightbulb {
   padding: 0;
 }
 
+.confirmation {
+  color: $button-color;
+  background-color: $browse-warning-color;
+}
+
+.pma-fieldset.confirmation legend {
+  background-color: $browse-warning-color;
+}
+
 .error {
-  border: 1px solid var(--browse-warning-color) !important;
+  border: 1px solid $browse-warning-color !important;
   padding: 5px;
   color: $button-color;
-  background-color: var(--browse-warning-color);
+  background-color: $browse-warning-color;
 }
 
 /* end messageboxes */
@@ -500,6 +561,42 @@ img.lightbulb {
 
 .new_central_col {
   width: 100%;
+}
+
+.tblcomment {
+  font-size: 70%;
+  font-weight: normal;
+  color: #009;
+}
+
+.tblHeaders {
+  font-family: $font-family-bold;
+  color: $th-color;
+  background: $th-background;
+  font-weight: normal;
+}
+
+div.tools,
+.tblFooters {
+  font-weight: normal;
+  color: $th-color;
+  background: $th-background;
+}
+
+.tblHeaders,
+div.tools,
+.tblFooters {
+  a {
+    &:link,
+    &:active,
+    &:visited {
+      color: #00f;
+    }
+
+    &:hover {
+      color: #f00;
+    }
+  }
 }
 
 /* disabled text */
@@ -583,6 +680,7 @@ div#tablestatistics table {
   top: 0;
   right: 0;
   z-index: 99;
+  padding: $breadcrumb-navbar-padding-y $breadcrumb-padding-x;
 }
 
 #page_settings_icon {
@@ -691,6 +789,11 @@ div#tablestatistics table {
   }
 }
 
+#fieldset_user_global_rights .pma-fieldset,
+#fieldset_user_group_rights .pma-fieldset {
+  float: left;
+}
+
 /* END user privileges */
 
 /* serverstatus */
@@ -701,6 +804,11 @@ div#tablestatistics table {
   cursor: pointer;
 }
 
+h3#serverstatusqueries span {
+  font-size: 60%;
+  display: inline;
+}
+
 div#serverStatusTabs {
   margin-top: 1em;
 }
@@ -709,9 +817,17 @@ caption a.top {
   float: right;
 }
 
+div#serverstatusquerieschart {
+  float: left;
+  width: 500px;
+  height: 350px;
+  padding-left: 30px;
+}
+
 div {
   &#serverstatus table {
-    tbody td.descr a {
+    tbody td.descr a,
+    .tblFooters a {
       white-space: nowrap;
     }
   }
@@ -755,6 +871,16 @@ div.tabLinks {
   }
 }
 
+.popupContent {
+  display: none;
+  position: absolute;
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 3px;
+  background-color: #fff;
+  z-index: 2;
+}
+
 div {
   &#logTable {
     padding-top: 10px;
@@ -795,6 +921,16 @@ div {
 }
 
 /* end serverstatus */
+
+/* profiling */
+
+div#profilingchart {
+  width: 850px;
+  height: 370px;
+  float: left;
+}
+
+/* END profiling */
 
 /* table charting */
 
@@ -883,12 +1019,12 @@ li {
 /* END iconic view for ul items */
 
 #body_browse_foreigners {
-  background: var(--navi-background);
+  background: $navi-background;
   margin: 0.5em 0.5em 0 0.5em;
 }
 
 #bodyquerywindow {
-  background: var(--navi-background);
+  background: $navi-background;
 }
 
 #bodythemes {
@@ -927,15 +1063,20 @@ li {
   clear: both;
 }
 
+#qbe_div_table_list,
+#qbe_div_sql_query {
+  float: left;
+}
+
 kbd {
-  color: $body-color;
+  color: $main-color;
   background-color: transparent;
   box-shadow: none;
 }
 
 code {
   font-size: 1em;
-  color: $body-color;
+  color: $main-color;
 
   &.php {
     display: block;
@@ -944,9 +1085,11 @@ code {
     margin-bottom: 0;
     max-height: 10em;
     overflow: auto;
+    direction: ltr;
   }
 }
 
+.sqlOuter code.sql,
 div.sqlvalidate,
 #inline_editor_outer {
   display: block;
@@ -955,6 +1098,7 @@ div.sqlvalidate,
   overflow: auto;
   background-color: $body-bg;
   border: 1px solid $border-color;
+  direction: ltr;
 }
 
 textarea#partitiondefinition {
@@ -987,16 +1131,16 @@ div {
     width: 202px;
     position: relative;
     margin: 0 auto 1em;
-    color: $body-color;
+    color: $main-color;
   }
 
   &.upload_progress_bar_inner {
-    background-color: var(--navi-background);
+    background-color: $navi-background;
     width: 0;
     height: 12px;
     margin: 1px;
     overflow: hidden;
-    color: $black;
+    color: $browse-marker-color;
     position: relative;
   }
 
@@ -1056,8 +1200,8 @@ input {
   background-repeat: no-repeat;
   background-position: 46%;
   margin: 0;
-  background-color: var(--navi-color);
-  color: $body-color;
+  background-color: $navi-color;
+  color: $main-color;
   padding: 10px !important;
   border: none;
 }
@@ -1081,7 +1225,6 @@ input {
   top: 0;
   left: 0;
   background: #000;
-  opacity: 0.7;
   z-index: 1000;
   overflow: hidden;
 }
@@ -1168,8 +1311,61 @@ table#index_columns {
 /* config forms */
 
 .config-form {
+  .pma-fieldset {
+    margin-top: 0;
+    padding: 0;
+    clear: both;
+    background: none;
+  }
+
   legend {
     display: none;
+  }
+
+  .pma-fieldset {
+    p {
+      margin: 0;
+      padding: 10px;
+      background: #fff;
+      font-family: $font-family-light;
+      font-size: 16px;
+    }
+
+    /* form error list */
+    .errors {
+      margin: 0 -2px 1em;
+      padding: 0.5em 1.5em;
+      background: #fbead9;
+      border-color: #c83838;
+      border-style: solid;
+      border-width: 1px 0;
+      list-style: none;
+      font-family: sans-serif;
+      font-size: small;
+    }
+
+    /* field error list */
+    .inline_errors {
+      margin: 0.3em 0.3em 0.3em;
+      margin-left: 0;
+      padding: 0;
+      list-style: none;
+      color: #9a0000;
+      font-size: small;
+    }
+
+    table {
+      background-color: #fff;
+    }
+
+    label {
+      font-weight: normal;
+    }
+
+    textarea {
+      margin: 5px;
+      padding: 5px;
+    }
   }
 }
 
@@ -1206,12 +1402,12 @@ table#index_columns {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
     vertical-align: top;
-    border-bottom: 1px var(--navi-color) solid;
+    border-bottom: 1px $navi-color solid;
     border-right: none;
   }
 
   th {
-    border-bottom: 1px var(--navi-color) solid;
+    border-bottom: 1px $navi-color solid;
     border-right: none;
 
     small {
@@ -1265,6 +1461,18 @@ fieldset {
       background-color: #ddd;
     }
   }
+}
+
+form {
+  &.create_table_form .pma-fieldset.tblFooters,
+  &#multi_edit_central_columns .pma-fieldset.tblFooters {
+    background: none;
+    border: none;
+  }
+}
+
+#db_or_table_specific_priv .tblFooters {
+  margin-top: -68px;
 }
 
 #edit_user_dialog,
@@ -1361,6 +1569,20 @@ input#auto_increment_opt {
   width: min-content;
 }
 
+#placeholder {
+  .button {
+    position: absolute;
+    cursor: pointer;
+  }
+
+  div.button {
+    font-size: smaller;
+    color: #999;
+    background-color: #eee;
+    padding: 2px;
+  }
+}
+
 .wrapper {
   float: left;
   margin-bottom: 1.5em;
@@ -1402,6 +1624,27 @@ input#auto_increment_opt {
   }
 }
 
+.doubleFieldset {
+  .pma-fieldset {
+    width: 48%;
+    float: left;
+    padding: 0;
+  }
+
+  legend {
+    margin-left: 1.5em;
+  }
+
+  div.wrap {
+    padding: 1.5em;
+  }
+}
+
+form.append_fields_form .tblFooters {
+  background: none;
+  border: none;
+}
+
 #table_columns {
   display: block;
   overflow: auto;
@@ -1423,69 +1666,54 @@ input#auto_increment_opt {
   }
 }
 
+#placeholder {
+  position: relative;
+  border: 1px solid #aaa;
+  float: right;
+  overflow: hidden;
+
+  .button {
+    position: absolute;
+  }
+}
+
 .placeholderDrag {
   cursor: move;
 }
 
-#visualization-placeholder {
-  position: relative;
-  border: 1px solid #aaa;
-  overflow: hidden;
-  box-sizing: content-box;
-
-  .visualization-target {
-    height: 100%;
-  }
-
-  .visualization-target-svg {
-    .button {
-      position: absolute;
-      cursor: pointer;
-    }
-
-    .left_arrow {
-      left: 8px;
-      top: 26px;
-    }
-
-    .right_arrow {
-      left: 26px;
-      top: 26px;
-    }
-
-    .up_arrow {
-      left: 17px;
-      top: 8px;
-    }
-
-    .down_arrow {
-      left: 17px;
-      top: 44px;
-    }
-
-    .zoom_in {
-      left: 17px;
-      top: 67px;
-    }
-
-    .zoom_world {
-      left: 17px;
-      top: 85px;
-    }
-
-    .zoom_out {
-      left: 17px;
-      top: 103px;
-    }
-  }
+#left_arrow {
+  left: 8px;
+  top: 26px;
 }
 
-#tooltip {
-  position: absolute;
-  border: 1px solid #fdd;
-  padding: 2px;
-  background-color: #fee;
-  opacity: 0.9;
+#right_arrow {
+  left: 26px;
+  top: 26px;
+}
+
+#up_arrow {
+  left: 17px;
+  top: 8px;
+}
+
+#down_arrow {
+  left: 17px;
+  top: 44px;
+}
+
+#zoom_in {
+  left: 17px;
+  top: 67px;
+}
+
+#zoom_world {
+  left: 17px;
+  top: 85px;
+}
+
+#zoom_out {
+  left: 17px;
+  top: 103px;
 }
 
 .colborder {
@@ -1608,7 +1836,7 @@ input#auto_increment_opt {
     white-space: nowrap;
 
     &:hover {
-      background: var(--navi-background);
+      background: $navi-background;
       cursor: pointer;
       color: #fff;
     }
@@ -1630,7 +1858,7 @@ input#auto_increment_opt {
   font-weight: normal;
 
   &:hover {
-    background: var(--navi-background);
+    background: $navi-background;
     cursor: pointer;
     color: #fff;
   }
@@ -1650,8 +1878,8 @@ input#auto_increment_opt {
 
 .navigation {
   width: 100%;
-  background-color: var(--navi-background);
-  color: var(--navi-color);
+  background-color: $navi-background;
+  color: $navi-color;
 
   td {
     margin: 0;
@@ -1662,8 +1890,8 @@ input#auto_increment_opt {
 
   input {
     &[type="submit"] {
-      background: var(--navi-background);
-      color: var(--navi-color);
+      background: $navi-background;
+      color: $navi-color;
       border: none;
       filter: none;
       margin: 5px;
@@ -1828,6 +2056,10 @@ body #ui-datepicker-div {
   z-index: 9999 !important;
 }
 
+.ui-dialog .pma-fieldset legend a {
+  color: #235a81;
+}
+
 div#page_content div {
   &#tableslistcontainer {
     margin-top: 1em;
@@ -1839,6 +2071,14 @@ div#page_content div {
 
   &.result_query {
     margin-top: 1em;
+  }
+}
+
+table.show_create {
+  margin-top: 1em;
+
+  td {
+    border-right: 1px solid #bbb;
   }
 }
 
@@ -1874,7 +2114,6 @@ div#page_content div {
   bottom: 0;
   left: 0;
   z-index: 100;
-  pointer-events: none;
 }
 
 textarea {
@@ -1898,7 +2137,6 @@ textarea {
     background: $th-background;
     border-top: solid 1px #ccc;
     cursor: n-resize;
-    pointer-events: auto;
 
     span {
       vertical-align: middle;
@@ -1964,7 +2202,6 @@ textarea {
     border-top: solid 1px #ccc;
     background: #fff;
     padding-top: 0.4em;
-    pointer-events: auto;
 
     &.console_dark_theme {
       background: #000;
@@ -2541,7 +2778,7 @@ body {
     .ui-widget-header {
       color: $button-color;
       border: none;
-      background-color: var(--navi-background);
+      background-color: $navi-background;
       background-image: none;
     }
 
@@ -2553,13 +2790,13 @@ body {
     .ui-dialog-buttonpane button {
       font-family: $font-family-base;
       color: $button-color;
-      background-color: var(--navi-background);
+      background-color: $navi-background;
       background-image: none;
-      border: 1px solid var(--button-background);
+      border: 1px solid $button-background;
 
       &.ui-state-hover {
-        background-color: var(--button-hover);
-        border: 1px solid var(--button-hover);
+        background-color: $button-hover;
+        border: 1px solid $button-hover;
       }
 
       &.ui-state-active {
@@ -2596,10 +2833,47 @@ body {
   vertical-align: baseline;
 }
 
+/* templates/database/multi_table_query */
+
+.multi_table_query_form {
+  .query-form__tr--hide {
+    display: none;
+  }
+
+  .query-form__fieldset--inline,
+  .query-form__select--inline {
+    display: inline;
+  }
+
+  .query-form__tr--bg-none {
+    background: none;
+  }
+
+  .query-form__input--wide {
+    width: 91%;
+  }
+
+  .query-form__multi-sql-query {
+    float: left;
+  }
+}
+
 // Enable scrollable blocks of code
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll;
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-up(xl) {
+  div.tools {
+    text-align: left;
+  }
+
+  .pma-fieldset.tblFooters,
+  .tblFooters {
+    text-align: left;
+  }
 }
 
 .resize-vertical {

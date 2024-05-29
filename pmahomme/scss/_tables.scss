@@ -9,6 +9,7 @@
 
   th {
     color: $th-color;
+    text-align: left;
   }
 
   td {
@@ -41,7 +42,7 @@
   }
 }
 
-@media only screen and (width >= 768px) {
+@media only screen and (min-width: 768px) {
   .table th.position-sticky {
     top: 60px;
   }

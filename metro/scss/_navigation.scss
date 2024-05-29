@@ -6,8 +6,8 @@
   top: 0;
   left: 0;
   height: 100%;
-  background: var(--navi-color);
-  color: $body-color;
+  background: $navi-color;
+  color: $main-color;
   z-index: 800;
 
   input[type="text"] {
@@ -20,7 +20,7 @@
     &:visited,
     &:active {
       text-decoration: none;
-      color: var(--navi-pointer-color);
+      color: $navi-pointer-color;
     }
 
     img {
@@ -70,7 +70,7 @@
   #pmalogo {
     margin: 0;
     padding: 12px;
-    background: var(--navi-background);
+    background: $navi-background;
     color: $button-color;
     font-size: 14px;
     cursor: default;
@@ -88,6 +88,15 @@
 
   #imgpmalogo {
     display: none;
+  }
+
+  #recentTableList {
+    text-align: center;
+    padding: 10px;
+
+    select {
+      min-width: 100%;
+    }
   }
 
   #databaseList {
@@ -124,7 +133,7 @@ img {
 #navipanellinks a {
   height: 16px;
   width: 16px;
-  color: $body-color;
+  color: $main-color;
   margin-right: 5px;
   padding: 5px;
   font-size: 15px;
@@ -216,7 +225,7 @@ img {
 
 #pma_navigation_tree {
   a {
-    color: var(--navi-color);
+    color: $navi-color;
     padding-left: 0;
 
     &:hover {
@@ -437,8 +446,8 @@ li.fast_filter {
   width: 20px;
   padding-top: 4px;
   padding-bottom: 12px;
-  background: var(--navi-background);
-  border-bottom: 1px solid var(--navi-background);
+  background: $navi-background;
+  border-bottom: 1px solid $navi-background;
   line-height: 22px;
   color: #fff;
   position: fixed;
@@ -449,6 +458,74 @@ li.fast_filter {
   z-index: 801;
 }
 
-#floating_menubar {
-  z-index: 99;
+/* Quick warp links */
+.pma_quick_warp {
+  margin-top: 5px;
+  margin-left: 10px;
+  position: relative;
+
+  .drop_list {
+    float: left;
+    margin-left: 3px;
+    padding: 2px 0;
+  }
+
+  .drop_button {
+    padding: 0.2em 0.5em;
+    border: 1px solid #ddd;
+    background: #f2f2f2;
+    cursor: pointer;
+    color: #333;
+  }
+
+  .drop_list {
+    &:hover .drop_button {
+      background: #fff;
+      color: #333;
+    }
+
+    ul {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      list-style: none;
+      background: #fff;
+      border: 1px solid #ddd;
+      top: 100%;
+      left: 3px;
+      right: 0;
+      display: none;
+      z-index: 802;
+    }
+
+    &:hover ul {
+      display: block;
+    }
+
+    li {
+      white-space: nowrap;
+      padding: 0;
+
+      img {
+        vertical-align: sub;
+      }
+
+      &:hover {
+        background: #f2f2f2;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 0.2em 0.3em;
+
+      &.favorite_table_anchor {
+        clear: left;
+        float: left;
+        padding: 0.1em 0.3em 0;
+      }
+    }
+  }
 }

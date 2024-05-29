@@ -16,10 +16,6 @@ $resize-img: '../img/designer/resize.png';
 .input_tab {
   background-color: #a6c7e1;
   color: $black;
-
-  .table {
-    background-color: var(--bs-body-bg);
-  }
 }
 
 .content_fullscreen {
@@ -34,8 +30,8 @@ $resize-img: '../img/designer/resize.png';
 }
 
 #canvas {
-  background-color: var(--#{$prefix}body-bg);
-  color: var(--#{$prefix}body-color);
+  background-color: $white;
+  color: $black;
 }
 
 canvas.designer {
@@ -49,15 +45,15 @@ canvas.designer {
 }
 
 .designer_tab {
-  background-color: var(--bs-tertiary-bg);
-  color: var(--bs-tertiary-color);
+  background-color: $white;
+  color: $black;
   border-collapse: collapse;
-  border: 1px solid var(--bs-border-color);
+  border: 1px solid #aaa;
   z-index: 1;
   user-select: none;
 
   .header {
-    background: var(--bs-primary-bg-subtle);
+    background: linear-gradient(#b8e6fa, #b8e6fa 6%, #cdf5fd 10%, #dbffff 10%, #9bd2f6 50%, #9bd2f6 100%);
   }
 }
 
@@ -69,6 +65,7 @@ canvas.designer {
 }
 
 .tab_zag_2 {
+  background: linear-gradient(#fffa96 0%, #fffa96 39%, #ffe796 40%, #ffe796 100%);
   text-align: center;
   cursor: move;
   padding: 1px;
@@ -76,20 +73,26 @@ canvas.designer {
 }
 
 .tab_field {
+  background: $white;
+  color: $black;
   cursor: default;
 
   &:hover {
+    background-color: #cfc;
+    color: $black;
     background-repeat: repeat-x;
     cursor: default;
   }
 }
 
 .tab_field_3 {
-  background-color: var(--bs-info-bg-subtle);
-  color: var(--bs-info-text-emphasis);
+  background-color: #ffe6e6;
+  color: $black;
   cursor: default;
 
   &:hover {
+    background-color: #cfc;
+    color: $black;
     background-repeat: repeat-x;
     cursor: default;
   }
@@ -157,10 +160,15 @@ canvas.designer {
   padding-right: 2px;
   cursor: default;
   width: 1px;
+  color: $black;
+  background: linear-gradient(#b8e6fa, #b8e6fa 6%, #cdf5fd 10%, #dbffff 10%, #9bd2f6 50%, #9bd2f6 100%);
 }
 
 .small_tab {
   vertical-align: top;
+  background-color: #0064ea;
+  color: $white;
+  background-image: url($small-tab-img);
   cursor: default;
   text-align: center;
   font-weight: bold;
@@ -171,6 +179,8 @@ canvas.designer {
 
   &:hover {
     vertical-align: top;
+    color: $white;
+    background-color: #f96;
     cursor: default;
     padding-left: 2px;
     padding-right: 2px;
@@ -182,17 +192,28 @@ canvas.designer {
 }
 
 .small_tab_pref {
+  background: linear-gradient(#b8e6fa, #b8e6fa 6%, #cdf5fd 10%, #dbffff 10%, #9bd2f6 50%, #9bd2f6 100%);
   text-align: center;
   width: 1px;
 
   &:hover {
     vertical-align: top;
+    color: $white;
+    background-color: #f96;
     cursor: default;
     text-align: center;
     font-weight: bold;
     width: 1px;
     text-decoration: none;
   }
+}
+
+.butt {
+  border: #47a solid 1px;
+  font-weight: bold;
+  background-color: $white;
+  color: $black;
+  vertical-align: baseline;
 }
 
 .L_butt2_1 {
@@ -252,8 +273,8 @@ canvas.designer {
 
 #osn_tab {
   position: absolute;
-  background-color: var(--#{$prefix}body-bg);
-  color: var(--#{$prefix}body-color);
+  background-color: $white;
+  color: $black;
 }
 
 .designer_header {
@@ -279,6 +300,7 @@ canvas.designer {
     float: left;
     margin: 3px 1px 4px;
     height: 20px;
+    border: 1px dotted $white;
   }
 
   .M_bord {
@@ -301,16 +323,23 @@ canvas.designer {
 }
 
 a {
+  &.M_butt_Selected_down_IE,
   &.M_butt_Selected_down {
-    background-color: var(--bs-info-bg-subtle);
+    border: 1px solid #c0c0bb;
+    background-color: #9f9;
+    color: $black;
 
     &:hover {
-      background-color: var(--bs-body-bg);
+      border: 1px solid #09c;
+      background-color: #fe9;
+      color: $black;
     }
   }
 
   &.M_butt:hover {
-    background-color: var(--bs-body-bg);
+    border: 1px solid #09c;
+    background-color: #fe9;
+    color: $black;
   }
 }
 
@@ -412,6 +441,11 @@ a {
   }
 }
 
+#foreignkeychk {
+  text-align: left;
+  cursor: pointer;
+}
+
 .side-menu {
   float: left;
   position: fixed;
@@ -453,13 +487,6 @@ a {
   font-size: 1.2em;
   padding: 5px;
   font-weight: bold;
-}
-
-@include color-mode(dark) {
-  .side-menu,
-  #name-panel {
-    background-color: var(--#{$prefix}secondary-bg);
-  }
 }
 
 #container-form {
